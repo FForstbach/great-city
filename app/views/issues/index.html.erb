@@ -8,6 +8,7 @@
       <th>Title</th>
       <th>Description</th>
       <th>User</th>
+      <th>Votes</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,6 +19,7 @@
         <td><%= issue.title %></td>
         <td><%= issue.description %></td>
         <td><%= issue.user_id %></td>
+        <td><i class="icon-star-empty"></i</td>
         <td><%= link_to 'Show', issue %></td>
         <td><%= link_to 'Edit', edit_issue_path(issue) %></td>
         <td><%= link_to 'Destroy', issue, method: :delete, data: { confirm: 'Are you sure?' } %></td>
