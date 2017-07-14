@@ -4,23 +4,29 @@
 
 <a href='', id='share-link'>Share your URL</a>
 
-<p>
-  <strong>Title:</strong>
-  <%= @issue.title %>
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <p>
+        <strong>Title:</strong>
+        <%= @issue.title %>
+      </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @issue.description %>
-</p>
+      <p>
+        <strong>Description:</strong>
+        <%= @issue.description %>
+      </p>
 
-<p>
-  <strong>Photo:</strong><br />
-  <%= image_tag @issue.photo.url(:medium) %>
-</p>
+      <p>
+        <strong>Photo:</strong><br />
+        <%= image_tag @issue.photo.url(:medium) %>
+      </p>
 
-<%= link_to 'Edit', edit_issue_path(@issue) %> |
-<%= link_to 'Back', issues_path %>
+      <%= link_to 'Edit', edit_issue_path(@issue) %> |
+      <%= link_to 'Back', issues_path %>
+    </div>
+  </div>
+</div>
 
 <script>
 var link = document.getElementById('share-link');
