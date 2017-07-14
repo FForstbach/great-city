@@ -10,6 +10,12 @@ class IssuesController < ApplicationController
   # GET /issues/1
   # GET /issues/1.json
   def show
+    @issues = Issue.where.not(latitude: nil, longitude: nil)
+    @hash = Gmaps4rails.build_markers(@issues) do |issue, marker|
+    marker.lat issue.latitude
+    marker.lng issue.longitude
+    # marker.infowindow render_to_string(partial: "/flats/map_box", locals: { flat: flat })
+    end
   end
 
   # GET /issues/new

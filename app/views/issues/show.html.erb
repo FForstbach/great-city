@@ -31,20 +31,22 @@
 </div>
 <script>
   function initMap() {
-    var uluru = {lat: -25.363, lng: 131.044};
+    var berlinIsFine = {lat: 52.487982, lng: 13.379418};
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 4,
-      center: uluru
+      zoom: 9,
+      center: berlinIsFine
     });
     var marker = new google.maps.Marker({
-      position: uluru,
+      position: berlinIsFine,
       map: map
     });
   }
 </script>
+
 <script async defer
-src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsYyLwYdbUMbe3ini_S-P5zE9MXUhf1nc&callback=initMap">
 </script>
+<!--
 <%= javascript_tag do %>
 $(document).ready(function() {
 var handler = Gmaps.build('Google');
@@ -56,11 +58,8 @@ handler.getMap().setZoom(2);
 } });
 });
 <% end %>
-
+ -->
 <script>
-
-
-
 var link = document.getElementById('share-link');
 link.addEventListener("click", function(event){
     event.preventDefault();

@@ -35,6 +35,10 @@ gem 'jbuilder', '~> 2.5'
 gem "paperclip", "~> 5.0.0"
 gem 'geocoder'
 gem "figaro"
+gem "gmaps4rails"
+source 'https://rails-assets.org' do
+  gem "rails-assets-underscore"
+end
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
