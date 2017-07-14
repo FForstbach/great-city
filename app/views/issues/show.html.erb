@@ -24,10 +24,14 @@
 
 <script>
 var link = document.getElementById('share-link');
-
 link.addEventListener("click", function(event){
     event.preventDefault();
-    console.log(link.href)
-    link.innerHTML = "Hello World";
+});
+
+new Clipboard('#share-link', {
+    text: function(trigger) {
+        alert('Link copied to clipboard!')
+        return window.location.href;
+    }
 });
 </script>
