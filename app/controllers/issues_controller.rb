@@ -15,10 +15,12 @@ class IssuesController < ApplicationController
   # GET /issues/new
   def new
     @issue = Issue.new
+    render '_first_step_form'
   end
 
   # GET /issues/1/edit
   def edit
+    render '_second_step_form'
   end
 
   # POST /issues
@@ -28,8 +30,7 @@ class IssuesController < ApplicationController
 
     respond_to do |format|
       if @issue.save
-        format.html { redirect_to @issue, notice: 'Issue was successfully created.' }
-        format.json { render :show, status: :created, location: @issue }
+        format.html { redirect_to edit_issue_path(@issue), notice: 'Issue was successfully created.' }
       else
         format.html { render :new }
         format.json { render json: @issue.errors, status: :unprocessable_entity }
@@ -69,6 +70,6 @@ class IssuesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def issue_params
-      params.require(:issue).permit(:title, :description, :user_id)
+      params.require(:issue).permit(:title, :description, :photo)
     end
 end

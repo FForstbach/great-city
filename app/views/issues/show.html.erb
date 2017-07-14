@@ -1,5 +1,9 @@
 <p id="notice"><%= notice %></p>
 
+<%= link_to 'Find other Issues', issues_path %>
+
+<a href='', id='share-link'>Share your URL</a>
+
 <p>
   <strong>Title:</strong>
   <%= @issue.title %>
@@ -11,9 +15,19 @@
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @issue.user_id %>
+  <strong>Photo:</strong><br />
+  <%= image_tag @issue.photo.url(:medium) %>
 </p>
 
 <%= link_to 'Edit', edit_issue_path(@issue) %> |
 <%= link_to 'Back', issues_path %>
+
+<script>
+var link = document.getElementById('share-link');
+
+link.addEventListener("click", function(event){
+    event.preventDefault();
+    console.log(link.href)
+    link.innerHTML = "Hello World";
+});
+</script>
