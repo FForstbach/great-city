@@ -1,5 +1,9 @@
 class IssuesController < ApplicationController
-  before_action :set_issue, only: [:show, :edit, :update, :destroy]
+  before_action :set_issue, only: [:show, :edit, :update, :destroy, :vote]
+
+  def vote
+    @issue.update_attribute(:votes, @issue.votes + 1)
+  end
 
   # GET /issues
   # GET /issues.json
@@ -71,7 +75,8 @@ class IssuesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_issue
-      @issue = Issue.find(params[:id])
+      id = params[:id] || params[:issue_id]
+      @issue = Issue.find(id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -12179,6 +12179,11 @@ return t.dispatch("turbolinks:before-render",{data:{newBody:e}})},r.prototype.no
   App.cable = ActionCable.createConsumer();
 
 }).call(this);
+$( document ).ready(function() {
+  $("i[id*='issue-']").on( "click", function(elem) {
+    console.log('Hey bro')
+  });
+});
 (function() {
 
 
@@ -12199,6 +12204,7 @@ return t.dispatch("turbolinks:before-render",{data:{newBody:e}})},r.prototype.no
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
 
 
 
