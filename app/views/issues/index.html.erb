@@ -17,7 +17,7 @@
         <%= link_to (issue) do %>
           <div class="card" style="background-image: linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.8)), url(<%= issue.photo %>);">
             <h2><%= issue.title.upcase %></h2>
-            <h3>XX Votes</h3>
+            <h3><%= issue.votes %>Votes</h3>
           </div>
         <% end %>
       </div>
