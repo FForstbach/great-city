@@ -1,22 +1,25 @@
-<%= form_for(@issue) do |f| %>
-  <% if @issue.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@issue.errors.count, "error") %> prohibited this issue from being saved:</h2>
+<div class="col-xs-12 col-sm-offset-3 col-sm-6">
+  <%= form_for(@issue) do |f| %>
+    <% if @issue.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@issue.errors.count, "error") %> prohibited this issue from being saved:</h2>
 
-      <ul>
-      <% @issue.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @issue.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+  <div class="card" id="upload">
+    <div class="field">
+      <%= f.label :photo, 'Please send a picture to create your issue: '%>
+      <%= f.file_field :photo, as: :file %>
+    </div>
+
+      <div class="actions">
+        <%= f.submit %>
+      </div>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :photo, 'Please send a picture to create your issue: '%>
-    <%= f.file_field :photo, as: :file %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
