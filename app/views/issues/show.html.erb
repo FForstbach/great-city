@@ -10,7 +10,7 @@
         <%= image_tag @issue.photo.url(:medium) %>
         <div class="card link">
           <h3>Vote for this project</h3>
-          <p><%= @issue.votes %></p>
+          <p><%= @issue.votes > 0 ? @issue.votes : "0" %></p>
         </div>
         <a href='', id='share-link'>Click to copy link</a>
       </div>
