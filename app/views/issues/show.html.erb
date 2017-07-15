@@ -29,6 +29,11 @@
     </div>
   </div>
 </div>
+
+<%= javascript_tag do %>
+  src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["google_api_key"] %>&callback=initMap"
+<% end %>
+
 <script>
   function initMap() {
     var berlinIsFine = {lat: 52.487982, lng: 13.379418};
@@ -43,9 +48,6 @@
   }
 </script>
 
-<script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsYyLwYdbUMbe3ini_S-P5zE9MXUhf1nc&callback=initMap">
-</script>
 <!--
 <%= javascript_tag do %>
 $(document).ready(function() {
