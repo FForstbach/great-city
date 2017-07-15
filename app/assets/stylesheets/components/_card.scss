@@ -4,14 +4,27 @@
   margin-bottom: 10px;
   border-radius: 3px;
   box-shadow: 1px 1px 1px black;
+  opacity: 1.0;
+  :hover {
+    opacity: 0.7;
+  }
   a, p {
     color: white;
     text-decoration: none;
+  }
+  h1 {
+    font-size: 32px;
   }
   h2 {
     color: black;
     font-family: "Avenir Next";
     font-size: 24px;
+    margin: 0;
+  }
+  h3 {
+    font-size: 18px;
+    color: white;
+    margin: 0;
   }
 
   h3, h4 {
@@ -24,4 +37,54 @@
 
 .card#new-project {
   background-color: white;
+}
+
+.tab {
+  height: 100px;
+  float: left;
+  width: 200px;
+}
+
+.tab-bar {
+  overflow: auto;
+}
+
+
+.card#active {
+  font-family: "Avenir Next";
+  width: 45%;
+  font-size: 2em;
+  opacity: 1;
+  display: inline;
+  margin-right: 10px;
+}
+
+.card#active:hover {
+  opacity: 0.7;
+}
+
+.card#past {
+  font-family: "Avenir Next";
+  width: 45%;
+  font-size: 2em;
+  color: white;
+  background-color: #02BEE8;
+  opacity: 1;
+}
+
+.card#past:hover {
+  opacity: 0.7;
+}
+
+.card#upload {
+  border: 0.5px dashed black;
+}
+
+.card img {
+  width: 20%;
+  background-repeat: none;
+}
+
+.row {
+  overflow: hidden;
 }

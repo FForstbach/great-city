@@ -11,15 +11,10 @@
     </div>
   <% end %>
 
-  <p>
-    <strong>WhatsApp image upload example</strong>
-  </p>
-
   <div class="field">
     <%= f.label :photo, 'Please send a picture to create your issue: '%>
     <%= f.file_field :photo, as: :file %>
   </div>
-
 
   <div class="actions">
     <%= f.submit %>

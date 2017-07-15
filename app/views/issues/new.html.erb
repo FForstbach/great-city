@@ -1,5 +1,18 @@
-<h1>New Issue</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+        <div class="card" id="upload">
+        <h1>Upload an image</h1>
+          <%= render 'new_form', issue: @issue %>
+        </div>
+        <%= link_to 'Back', issues_path %>
+      </div>
+  </div>
+</div>
 
-<%= render 'new_form', issue: @issue %>
 
-<%= link_to 'Back', issues_path %>
+
+
+
+
+
