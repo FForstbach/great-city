@@ -1,26 +1,17 @@
-<p id="notice"><%= notice %></p>
 
-<%= link_to 'Find other Issues', issues_path %>
-
-<a href='', id='share-link'>Share your URL</a>
 
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <p>
-        <strong>Title:</strong>
-        <%= @issue.title %>
-      </p>
+      <p id="notice"><%= notice %></p>
+      <%= link_to '< Overview', issues_path %>
+      <a href='', id='share-link'>Share your URL</a>
+      <h1><%= @issue.title.upcase %></h1>
 
-      <p>
-        <strong>Description:</strong>
-        <%= @issue.description %>
-      </p>
+      <strong>Description:</strong>
+      <h4><%= @issue.description %></h4>
+      <%= image_tag @issue.photo.url(:medium) %>
 
-      <p>
-        <strong>Photo:</strong><br />
-        <%= image_tag @issue.photo.url(:medium) %>
-      </p>
 
       <div id="map" style="width: 100%; height: 600px;"></div>
 

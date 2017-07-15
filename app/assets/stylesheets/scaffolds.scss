@@ -11,6 +11,15 @@ p, ol, ul, td {
   font-size: 13px;
   line-height: 18px;
   margin: 33px;
+  font-family: "Avenir Next";
+}
+
+h1 {
+  font-family: "Avenir Next";
+}
+
+h4 {
+  color: blue;
 }
 
 pre {
@@ -21,6 +30,7 @@ pre {
 
 a {
   color: #000;
+  font-family: "Avenir Next";
 
   &:visited {
     color: #666;

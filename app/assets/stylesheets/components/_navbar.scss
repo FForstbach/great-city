@@ -11,9 +11,16 @@
   justify-content: space-between;
   a {
     color: white;
+    text-decoration: none;
   }
+  a:hover {
+    text-decoration: none;
+
+  }
+
   h1 {
     font-family: "Avenir Next";
+    font-size: 32px;
   }
 }
 
