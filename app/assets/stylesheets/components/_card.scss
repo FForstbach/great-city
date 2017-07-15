@@ -35,6 +35,17 @@
   }
 }
 
+.card.link {
+  width: 300px;
+  :hover {
+    background-color: red;
+  }
+  p {
+    color: black;
+  }
+
+}
+
 .card#new-project {
   background-color: white;
 }
