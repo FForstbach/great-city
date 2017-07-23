@@ -14,7 +14,9 @@
   <div class="card" id="upload">
     <div class="field">
       <%= f.label :photo, 'Please send a picture to create your issue: '%>
-      <%= f.file_field :photo, as: :file %>
+      <!-- old photo uploader <%= f.file_field :photo, as: :file %> -->
+      <!-- this input will access the camera function -->
+      <%= f.file_field(:photo, accept: 'image/*', capture: 'camera') %>
     </div>
 
       <div class="actions">
