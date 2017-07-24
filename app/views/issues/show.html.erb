@@ -13,11 +13,11 @@
         </div>
         <div>
           <h4>Description</h4>
-          <p><%= @issue.description %></p>
+          <p><%= !@issue.description.nil? ? @issue.description : "No description" %></p>
           <h4>Address</h4>
-          <p><%= @issue.address %></p>
+          <p><%= !@issue.address.nil? ? @issue.address : "Unknown address" %></p>
           <h4>Votes</h4>
-          <p id='vote-count'><%= !@issue.votes.nil? ? @issue.votes : "0" %> votes so far</p>
+          <p id='vote-count'><%= !@issue.votes.nil? ? @issue.votes : "0 votes so far" %></p>
         </div>
         <div>
           <p class="button vote" id="issue-<%= @issue.id %>">Vote for this project</p>
