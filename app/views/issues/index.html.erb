@@ -12,7 +12,8 @@
     </div>
   </div>
   <div class="row">
-    <% @issues.each do |issue| %>
+  <% issues_sorted = @issues.sort_by { |issue| -issue["votes"] } %>
+    <% issues_sorted.each do |issue| %>
       <div class="col-xs-12 col-sm-6">
         <%= link_to (issue) do %>
           <div class="card" style="background-image: linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.8)), url(<%= issue.photo %>);">
@@ -32,32 +33,3 @@
       </div>
   </div>
 </div>
-
-
-<!-- <table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>User</th>
-      <th>Votes</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @issues.each do |issue| %>
-      <tr>
-        <td><%= issue.title %></td>
-        <td><%= issue.description %></td>
-        <td><%= issue.user_id %></td>
-        <td><i class="icon-star-empty"></i</td>
-        <td><%= link_to 'Show', issue %></td>
-        <td><%= link_to 'Edit', edit_issue_path(issue) %></td>
-        <td><%= link_to 'Destroy', issue, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br> -->
