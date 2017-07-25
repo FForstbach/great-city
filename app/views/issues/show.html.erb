@@ -36,9 +36,9 @@
   <script>
   $(document).on('ready', function() {
     var link = document.getElementById("share-link");
-    link.addEventListener("click", function(event){
+    link.addEventListener('click', function(event){
         event.preventDefault();
-    });
+    }, {passive: false});
 
     new Clipboard('#share-link', {
         text: function(trigger) {
@@ -46,6 +46,7 @@
             return window.location.href;
         }
     });
+  });
   </script>
   <script>
   $(document).on('ready', function() {
@@ -64,7 +65,7 @@
   </script>
 
   <!-- Include Google Maps JS library. You should use your *own* key -->
-  <script src="https://maps.google.com/maps/api/js?key="<%= ENV["GOOGLE_API_BROWSER_KEY"] %>"></script>
+  <%= javascript_include_tag "https://maps.google.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_BROWSER_KEY']}" %>
 
   <!-- Include Dependencies of GMaps for Rails gem -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
