@@ -24,4 +24,4 @@
 /config/application.yml
 
 # Ignore image uploads
-/public/*
+#/public/*
