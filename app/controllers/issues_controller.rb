@@ -1,5 +1,6 @@
 class IssuesController < ApplicationController
   before_action :set_issue, only: [:show, :edit, :update, :destroy, :vote]
+  before_action :authenticate_user!, only: :edit
 
   def vote
     @issue.update_attribute(:votes, @issue.votes + 1)
@@ -8,7 +9,7 @@ class IssuesController < ApplicationController
   # GET /issues
   # GET /issues.json
   def index
-    @issues = Issue.all
+    @issues = user_signed_in? ? Issue.all : Issue.approved
   end
 
   # GET /issues/1
@@ -37,6 +38,7 @@ class IssuesController < ApplicationController
   # POST /issues.json
   def create
     @issue = Issue.new(issue_params)
+    puts "ISSUE: #{@issue.inspect}"
 
     respond_to do |format|
       if @issue.save

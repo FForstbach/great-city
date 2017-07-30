@@ -44,6 +44,13 @@
     <!-- Button (call-to-action) -->
     <%= link_to "Create new issue", new_issue_path, class: "navbar-wagon-item navbar-wagon-button" %>
 
+    <!-- Logout button -->
+    <% if user_signed_in? %>
+      <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "navbar-wagon-item navbar-wagon-button" %>
+    <% else %>
+      <%= link_to "Login", new_user_session_path, class: "navbar-wagon-item navbar-wagon-button" %>
+    <% end %>
+
   </div>
 
   <!-- Dropdown appearing on mobile only -->
