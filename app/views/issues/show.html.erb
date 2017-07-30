@@ -32,73 +32,55 @@
     </div>
   </div>
 </div>
+
 <% content_for(:after_js) do %>
-  <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/markerclusterer/src/markerclusterer_compiled.js" %>
-  <script>
-  $(document).on('ready', function() {
+  <script type='text/javascript'>
+
     var link = document.getElementById("share-link");
+    var geocoder = new google.maps.Geocoder();
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 13,
+    });
+
     link.addEventListener('click', function(event){
-        event.preventDefault();
-    }, {passive: false});
+      event.preventDefault();
+    }, {passive: true});
 
     new Clipboard('#share-link', {
-        text: function(trigger) {
-            alert('Link copied to clipboard!')
-            return window.location.href;
-        }
+      text: function(trigger) {
+        alert('Link copied to clipboard!')
+          return window.location.href;
+      },
+      passive: true
     });
-  });
-  </script>
-  <script>
-  $(document).on('ready', function() {
+
     $("p[id*='issue-']").one( "click", function(elem) {
       var id = elem.target.id.replace('issue-','')
-      var votes = parseInt($('#vote-count').text()) + 1
-      $('#vote-count').text(votes + ' votes so far')
-      $.ajax({
-        url: '/issues/' + id + '/vote',
-        method: 'POST'
-      })
+        var votes = parseInt($('#vote-count').text()) + 1
+        $('#vote-count').text(votes + ' votes so far')
+        $.ajax({
+          url: '/issues/' + id + '/vote',
+          method: 'POST'
+        })
 
     });
-  });
 
-  </script>
-
-  <!-- Include Google Maps JS library. You should use your *own* key -->
-  <%= javascript_include_tag "https://maps.google.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_BROWSER_KEY']}" %>
-
-  <!-- Include Dependencies of GMaps for Rails gem -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-marker-clusterer/1.0.0/markerclusterer_compiled.js"></script>
-  <script src="https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js"></script>
-  <script src="https://cdn.rawgit.com/apneadiving/Google-Maps-for-Rails/master/js_compilation/gmaps_google.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
-
-  <script type="text/javascript">
-    $(document).on('ready', function() {
-
-      var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 12,
+    function geocodeAddress(geocoder, resultsMap) {
+      var address = document.getElementById('address').innerHTML;
+      geocoder.geocode({'address': address}, function(results, status) {
+        if (status === 'OK') {
+          resultsMap.setCenter(results[0].geometry.location);
+          var marker = new google.maps.Marker({
+            map: resultsMap,
+            position: results[0].geometry.location
+          });
+        } else {
+          console.log('Geocode was not successful for the following reason: ' + status);
+        }
       });
-      var geocoder = new google.maps.Geocoder();
+    }
 
-      function geocodeAddress(geocoder, resultsMap) {
-        var address = document.getElementById('address').innerHTML;
-        geocoder.geocode({'address': address}, function(results, status) {
-          if (status === 'OK') {
-            resultsMap.setCenter(results[0].geometry.location);
-            var marker = new google.maps.Marker({
-              map: resultsMap,
-              position: results[0].geometry.location
-            });
-          } else {
-            console.log('Geocode was not successful for the following reason: ' + status);
-          }
-        });
-      }
-        geocodeAddress(geocoder, map);
-    });
+    geocodeAddress(geocoder, map);
+
   </script>
 <% end %>
