@@ -1,16 +1,4 @@
-<p id="notice"><%= notice %></p>
-
 <div class="container">
-<!--   <div class="row">
-    <div class="tab-bar">
-        <div class="card tab" id="active">
-          <h1>ACTIVE PROJECTS</h1>
-        </div>
-        <div class="card tab" id="past">
-          <h1>PAST PROJECTS</h1>
-        </div>
-    </div>
-  </div> -->
   <div class="row">
     <% issues_sorted = @issues.sort_by { |issue| -issue["votes"] } %>
     <% issues_sorted.each do |issue| %>

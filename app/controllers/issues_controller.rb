@@ -38,7 +38,6 @@ class IssuesController < ApplicationController
   # POST /issues.json
   def create
     @issue = Issue.new(issue_params)
-    puts "ISSUE: #{@issue.inspect}"
 
     respond_to do |format|
       if @issue.save
@@ -55,7 +54,7 @@ class IssuesController < ApplicationController
   def update
     respond_to do |format|
       if @issue.update(issue_params)
-        format.html { redirect_to @issue, notice: 'Issue was successfully updated.' }
+        format.html { redirect_to @issue, notice: 'Your issue was submitted for approval' }
         format.json { render :show, status: :ok, location: @issue }
       else
         format.html { render :edit }
