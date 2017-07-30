@@ -1,5 +1,6 @@
 class IssuesController < ApplicationController
   before_action :set_issue, only: [:show, :edit, :update, :destroy, :vote]
+  before_action :authenticate_user!, only: :edit
 
   def vote
     @issue.update_attribute(:votes, @issue.votes + 1)
@@ -8,7 +9,7 @@ class IssuesController < ApplicationController
   # GET /issues
   # GET /issues.json
   def index
-    @issues = Issue.all
+    @issues = user_signed_in? ? Issue.all : Issue.approved
   end
 
   # GET /issues/1
@@ -53,7 +54,7 @@ class IssuesController < ApplicationController
   def update
     respond_to do |format|
       if @issue.update(issue_params)
-        format.html { redirect_to @issue, notice: 'Issue was successfully updated.' }
+        format.html { redirect_to @issue, notice: 'Your issue was submitted for approval' }
         format.json { render :show, status: :ok, location: @issue }
       else
         format.html { render :edit }

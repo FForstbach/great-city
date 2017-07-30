@@ -15,16 +15,16 @@
 
     <div class="field">
       <%= f.label :title %>
-      <%= f.text_field :title, class: "form-control", placeholder: "Enter title", value: "New Issue" %>
+      <%= f.text_field :title, class: "form-control", placeholder: "Title" %>
     </div>
 
     <div class="field">
       <%= f.label :description %>
-      <%= f.text_area :description, class: "form-control" %>
+      <%= f.text_area :description, class: "form-control", placeholder: "Describe the issue" %>
     </div>
     <div class="field">
       <%= f.label :address %>
-      <%= f.text_field :address, class: "form-control", id: "issue_address" %>
+      <%= f.text_field :address, class: "form-control", id: "issue_address", placeholder: "City, Country" %>
     </div>
 
 <!--     <div class="field">

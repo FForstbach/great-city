@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :issues do
     post '/vote' => 'issues#vote'
   end
