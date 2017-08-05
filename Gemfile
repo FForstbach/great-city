@@ -38,10 +38,9 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-gem "paperclip", "~> 5.0.0"
-gem 'geocoder'
+gem 'cloudinary'
 gem "figaro"
-gem "gmaps4rails"
+
 source 'https://rails-assets.org' do
   gem "rails-assets-underscore"
 end

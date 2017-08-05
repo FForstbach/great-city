@@ -13,10 +13,10 @@
     <% end %>
   <div class="card" id="upload">
     <div class="field">
-      <%= f.label :photo, 'Please send a picture to create your issue: '%>
-      <!-- old photo uploader <%= f.file_field :photo, as: :file %> -->
+      <%=  "f.label :photo, 'Please send a picture to create your issue: '" %>
+      <!-- old photo uploader <%=  'f.file_field :photo, as: :file' %> -->
       <!-- this input will access the camera function -->
-      <%= f.file_field(:photo, accept: 'image/*', capture: 'camera') %>
+      <%= "f.file_field(:photo, accept: 'image/*', capture: 'camera')" %>
 
     </div>
 

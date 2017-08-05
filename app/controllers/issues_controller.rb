@@ -15,12 +15,6 @@ class IssuesController < ApplicationController
   # GET /issues/1
   # GET /issues/1.json
   def show
-    @issues = Issue.where.not(latitude: nil, longitude: nil)
-    @hash = Gmaps4rails.build_markers(@issues) do |issue, marker|
-    marker.lat issue.latitude
-    marker.lng issue.longitude
-    # marker.infowindow render_to_string(partial: "/flats/map_box", locals: { flat: flat })
-    end
   end
 
   # GET /issues/new
@@ -82,6 +76,6 @@ class IssuesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def issue_params
-      params.require(:issue).permit(:title, :description, :photo, :votes, :active, :address, :longitude, :latitude)
+      params.require(:issue).permit(:title, :description, :votes, :active, :address, :approved)
     end
 end
