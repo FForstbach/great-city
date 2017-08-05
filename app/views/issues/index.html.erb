@@ -4,7 +4,7 @@
     <% issues_sorted.each do |issue| %>
       <div class="col-xs-12 col-sm-6">
         <%= link_to (issue) do %>
-          <div class="card" style="background-image: linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.8)), url(<%= 'issue.photo' %>);">
+          <div class="card" style="background-image: linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.8)), url(<%= cl_image_tag(issue.image_id) %>);">
             <h2><%= issue.title.upcase %></h2>
             <h3><%= issue.votes %> Votes</h3>
           </div>

@@ -1,6 +1,6 @@
 class IssuesController < ApplicationController
   before_action :set_issue, only: [:show, :edit, :update, :destroy, :vote]
-  before_action :authenticate_user!, only: :edit
+  before_action :authenticate_user!, only: :edit, if: '@issue.votes > 1'
 
   def vote
     @issue.update_attribute(:votes, @issue.votes + 1)
@@ -32,6 +32,12 @@ class IssuesController < ApplicationController
   # POST /issues.json
   def create
     @issue = Issue.new(issue_params)
+
+    if issue_params[:image_id].present?
+      preloaded = Cloudinary::PreloadedFile.new(issue_params[:image_id])
+      raise "Invalid upload signature" if !preloaded.valid?
+      @issue.image_id = preloaded.identifier
+    end
 
     respond_to do |format|
       if @issue.save
@@ -76,6 +82,6 @@ class IssuesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def issue_params
-      params.require(:issue).permit(:title, :description, :votes, :active, :address, :approved)
+      params.require(:issue).permit(:title, :description, :votes, :active, :address, :approved, :image_id)
     end
 end

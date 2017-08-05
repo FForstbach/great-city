@@ -8,7 +8,7 @@
           <h1><%= @issue.title.upcase %></h1>
         </div>
         <div>
-          <%= 'image_tag @issue.photo.url(:medium)' %>
+          <%= cl_image_tag(@issue.image_id) %>
         </div>
         <div>
           <h4>Description</h4>

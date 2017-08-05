@@ -1,3 +1,13 @@
+<script type='text/javascript'>
+$(function() {
+  if($.fn.cloudinary_fileupload !== undefined) {
+    $("input.cloudinary-fileupload[type=file]").cloudinary_fileupload();
+  }
+});
+</script>
+
+<%= cloudinary_js_config %>
+
 <div class="col-xs-12 col-sm-offset-3 col-sm-6">
   <%= form_for(@issue) do |f| %>
     <% if @issue.errors.any? %>
@@ -13,11 +23,7 @@
     <% end %>
   <div class="card" id="upload">
     <div class="field">
-      <%=  "f.label :photo, 'Please send a picture to create your issue: '" %>
-      <!-- old photo uploader <%=  'f.file_field :photo, as: :file' %> -->
-      <!-- this input will access the camera function -->
-      <%= "f.file_field(:photo, accept: 'image/*', capture: 'camera')" %>
-
+      <%= f.cl_image_upload(:image_id, html: { accept: 'image/*', capture: 'camera' }) %>
     </div>
 
       <div class="actions">
