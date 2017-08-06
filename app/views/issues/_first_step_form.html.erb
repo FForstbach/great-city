@@ -8,6 +8,77 @@ $(function() {
 
 <%= cloudinary_js_config %>
 
+<script type='text/javascript'>
+$(document).ready(function() {
+  $(".cloudinary-fileupload")
+    .cloudinary_fileupload({
+      disableImageResize: false,
+      //imageMaxWidth: 800,
+      //imageMaxHeight: 600,
+      acceptFileTypes: /(\.|\/)(gif|jpe?g|png|bmp|ico)$/i,
+      maxFileSize: 5242880, // 5MB
+      dropZone: "#direct_upload",
+      start: function (e) {
+        $(".status").text("Starting upload...");
+      },
+      progress: function (e, data) {
+        $(".status").text("Uploading... " + Math.round((data.loaded * 100.0) / data.total) + "%");
+      },
+      fail: function (e, data) {
+        $(".status").text("Upload failed");
+      }
+    })
+  .off("cloudinarydone").on("cloudinarydone", function (e, data) {
+    $("#photo_bytes").val(data.result.bytes);
+    $(".status").text("");
+    var preview = $(".preview").html('');
+    $.cloudinary.image(data.result.public_id, {
+      format: data.result.format, width: 50, height: 50, crop: "fit"
+    }).appendTo(preview);
+    // Delete function -> might be useful in the future
+    //$('<a/>').
+    //  addClass('delete_by_token').
+    //  attr({href: '#', style: "color: #000; text-transform: uppercase; size: 20px;"}).
+    //  data({delete_token: data.result.delete_token}).
+    //  html('X').
+    //  appendTo(preview).
+    //  click(function(e) {
+    //    e.preventDefault();
+    //    $.cloudinary.delete_by_token($(this).data('delete_token')).done(function(){
+    //      $('.preview').html('');
+    //      $('#info').html('');
+    //      $("#photo_bytes").val('');
+    //      $('input[name="photo[image]"]').remove();
+    //    }).fail(function() {
+    //      $('.status').text("Cannot delete image");
+    //    });
+    //  })
+    view_upload_details(data.result);
+  });
+});
+function view_upload_details(upload) {
+  // Build an html table out of the upload object
+  var rows = [];
+  $.each(upload, function(k,v){
+    rows.push(
+        $("<tr>")
+        .append($("<td>").text(k))
+        .append($("<td>").text(JSON.stringify(v))));
+  });
+  $("#info").html(
+      $("<div class=\"upload_details\">")
+      .append("<h2>Upload metadata:</h2>")
+      .append($("<table>").append(rows)));
+  updateCardHeight();
+}
+function updateCardHeight() {
+  // TODO? find a way to update with the right height number
+  //$('div#upload.card').height($('div#upload.card').height() + $('.preview').height());
+  $('div#upload.card').height(300);
+
+}
+</script>
+
 <div class="col-xs-12 col-sm-offset-3 col-sm-6">
   <%= form_for(@issue) do |f| %>
     <% if @issue.errors.any? %>
@@ -15,24 +86,25 @@ $(function() {
         <h2><%= pluralize(@issue.errors.count, "error") %> prohibited this issue from being saved:</h2>
 
         <ul>
-        <% @issue.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
+          <% @issue.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
         </ul>
       </div>
     <% end %>
-  <div class="card" id="upload">
-    <div class="field">
-      <%= f.cl_image_upload(:image_id, html: { accept: 'image/*', capture: 'camera' }) %>
-    </div>
+    <div class="card" id="upload">
+      <%= f.label :image_id, "Image:" %>
+      <%= button_to("Upload", "#", :class => "actions") %>
+      <div class="field">
+        <%= f.cl_image_upload(:image_id, html: { accept: 'image/*', capture: 'camera' }) %>
+      </div>
+      <span class="status"></span>
 
+      <div class="preview"></div>
       <div class="actions">
         <%= f.submit %>
       </div>
     </div>
   <% end %>
 </div>
-
-</body>
-</html>
 

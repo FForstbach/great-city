@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 one = Cloudinary::Uploader.upload("http://fillmurray.com/200/300")
-imageId = imageId = one['url'].gsub('http://res.cloudinary.com/loveyourcity/','') + "##{one['signature']}"
+imageId = one['url'].gsub('http://res.cloudinary.com/loveyourcity/image/upload/','')
 one = Issue.new(
   title: "Broken Tree",
   description: "Lost all its apples,
@@ -22,7 +22,7 @@ one = Issue.new(
 one.save!
 
 one = Cloudinary::Uploader.upload("http://fillmurray.com/300/300")
-imageId = imageId = one['url'].gsub('http://res.cloudinary.com/loveyourcity/','') + "##{one['signature']}"
+imageId = one['url'].gsub('http://res.cloudinary.com/loveyourcity/image/upload/','')
 two = Issue.new(
   title: "Toilet on the street",
   description: "And there is shit in it too!",
@@ -35,7 +35,7 @@ two = Issue.new(
 two.save!
 
 one = Cloudinary::Uploader.upload("http://fillmurray.com/400/300")
-imageId = imageId = one['url'].gsub('http://res.cloudinary.com/loveyourcity/','') + "##{one['signature']}"
+imageId = one['url'].gsub('http://res.cloudinary.com/loveyourcity/image/upload/','')
 three = Issue.new(
   title: "Ugly building",
   description: "Cant you destroy this and build something nice?",
@@ -49,7 +49,7 @@ three = Issue.new(
 three.save!
 
 one = Cloudinary::Uploader.upload("http://fillmurray.com/400/400")
-imageId = imageId = one['url'].gsub('http://res.cloudinary.com/loveyourcity/','') + "##{one['signature']}"
+imageId = one['url'].gsub('http://res.cloudinary.com/loveyourcity/image/upload/','')
 three = Issue.new(
   title: "Bicycle parking lot",
   description: "One spot missing for my bike!",
@@ -62,7 +62,7 @@ three = Issue.new(
 three.save!
 
 one = Cloudinary::Uploader.upload("http://fillmurray.com/400/400")
-imageId = imageId = one['url'].gsub('http://res.cloudinary.com/loveyourcity/','') + "##{one['signature']}"
+imageId = one['url'].gsub('http://res.cloudinary.com/loveyourcity/image/upload/','')
 three = Issue.new(
   title: "Soccer goal broken",
   description: "Will sue if my kid does not get drafted by Bayern Munich",
