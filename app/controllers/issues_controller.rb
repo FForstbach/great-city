@@ -1,15 +1,23 @@
 class IssuesController < ApplicationController
-  before_action :set_issue, only: [:show, :edit, :update, :destroy, :vote]
+  before_action :set_issue, only: [:show, :edit, :update, :destroy, :vote, :approve]
   before_action :authenticate_user!, only: :edit, if: '@issue.votes > 1'
+  before_action :authenticate_user!, only: :approve
 
   def vote
     @issue.update_attribute(:votes, @issue.votes + 1)
   end
 
+  def approve
+    @issue.update_attribute(:approved, true)
+    redirect_to :root
+  end
+
   # GET /issues
   # GET /issues.json
   def index
-    @issues = user_signed_in? ? Issue.all : Issue.approved
+    @issues = Issue.approved
+    @pending_issues = user_signed_in? ? Issue.pending : nil
+    @closed_issues = user_signed_in? ? Issue.closed : nil
   end
 
   # GET /issues/1
