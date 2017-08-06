@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :issues do
     post '/vote' => 'issues#vote'
+    post '/approve' => 'issues#approve'
   end
   resources :users
 

@@ -1,4 +1,10 @@
+<% if user_signed_in? && @pending_issues.present? %>
+  <%= render 'pending', issues: @pending_issues %>
+  <hr width='100%'>
+<% end %>
+
 <div class="container">
+  <h3>Open Issues</h3>
   <div class="row">
     <% issues_sorted = @issues.sort_by { |issue| -issue["votes"] } %>
     <% issues_sorted.each do |issue| %>
@@ -22,3 +28,9 @@
       </div>
   </div>
 </div>
+
+<% if user_signed_in? && @closed_issues.present? %>
+  <hr width='100%'>
+  <%= render 'closed', issues: @closed_issues %>
+<% end %>
+

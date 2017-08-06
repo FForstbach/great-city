@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20170729173426) do
     t.integer  "user_id"
     t.integer  "votes",       default: 1
     t.boolean  "approved",    default: false
-    t.boolean  "active",      default: false
+    t.boolean  "active",      default: true
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end
