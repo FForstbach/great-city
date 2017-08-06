@@ -1,0 +1,21 @@
+---
+development:
+  cloud_name: <%= ENV.fetch('CLRY_NAME') %>
+  api_key: <%= ENV.fetch('CLRY_API_KEY') %>
+  api_secret: <%= ENV.fetch('CLRY_API_SECRET') %>
+  enhance_image_tag: true
+  static_image_support: false
+
+production:
+  cloud_name: <%= ENV.fetch('CLRY_NAME') %>
+  api_key: <%= ENV.fetch('CLRY_API_KEY') %>
+  api_secret: <%= ENV.fetch('CLRY_API_SECRET') %>
+  enhance_image_tag: true
+  static_image_support: true
+
+test:
+  cloud_name: <%= ENV.fetch('CLRY_NAME') %>
+  api_key: <%= ENV.fetch('CLRY_API_KEY') %>
+  api_secret: <%= ENV.fetch('CLRY_API_SECRET') %>
+  enhance_image_tag: true
+  static_image_support: false

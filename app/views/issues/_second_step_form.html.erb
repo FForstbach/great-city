@@ -27,17 +27,7 @@
       <%= f.text_field :address, class: "form-control", id: "issue_address", placeholder: "City, Country" %>
     </div>
 
-<!--     <div class="field">
-    <%= f.label :latitude %>
-    <%= f.text_field :latitude, class: "form-control", id: "latitude", placeholder: "Latitude" %>
-    </div>
-
-    <div class="field">
-    <%= f.label :longitude %>
-    <%= f.text_field :longitude, class: "form-control", id: "longitude", placeholder: "Longitude" %>
-    </div> -->
-
-      <%= image_tag @issue.photo.url(:medium) %>
+    <%= cl_image_tag(@issue.image_id) %>
     <div class="actions">
       <%= f.submit class: "btn" %>
 
