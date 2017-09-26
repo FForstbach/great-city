@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <h3>Hello Master</h3>
+    <p>These are the past issues, the ones that are already solved:</p>
+  </div>
+  <div class="row">
+    <% issues_sorted = @closed_issues.sort_by { |issue| -issue["votes"] } %>
+    <% issues_sorted.each do |issue| %>
+      <div class="col-xs-12 col-sm-6">
+        <%= link_to (issue) do %>
+          <div class="card"
+               style="background-image: linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.8)), url('<%= cloudinary_url(issue.image_id, secure: true) %>');">
+            <h2><%= issue.title.upcase %></h2>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

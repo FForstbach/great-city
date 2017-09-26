@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <h3>Hello Master</h3>
+    <p>Please take a look at these recently submitted issues. Approve the ones that please you :)</p>
+  </div>
+  <div class="row">
+    <% issues_sorted = @pending_issues.sort_by { |issue| -issue["votes"] } %>
+    <% issues_sorted.each do |issue| %>
+      <div class="col-xs-11 col-sm-5">
+        <%= link_to (issue) do %>
+          <div class="card"
+               style="background-image: linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.8)), url('<%= cloudinary_url(issue.image_id, secure: true) %>');">
+            <h2><%= issue.title.upcase %></h2>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="col-xs-1 col-sm-1">
+        <%= button_to 'Approve', issue_approve_path(issue) %>
+      </div>
+    <% end %>
+  </div>
+</div>
